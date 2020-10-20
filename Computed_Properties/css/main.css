@@ -1,0 +1,52 @@
+body {
+  background: #fff;
+  color: #000;
+}
+
+#app {
+  width: 70%;
+  height: 600px;
+}
+#app .product {
+  margin: auto;
+}
+#app .product .product-image {
+  float: left;
+  width: 30%;
+}
+#app .product .product-image img {
+  width: 400px;
+  height: 400px;
+  border: 1px solid #666;
+}
+#app .product .product-info {
+  float: right;
+  width: 40%;
+}
+#app .product .product-info .cart {
+  display: flex;
+  margin-top: 30px;
+  border: 1px solid #666;
+  padding: 5px;
+  font-size: 20px;
+  font-weight: bold;
+}
+#app .product .product-info .cart button {
+  margin-right: 10px;
+  background: #3de7a0;
+  cursor: pointer;
+}
+#app .product .product-info .cart .disabledButton {
+  background: gray;
+  color: #333;
+}
+#app .product .product-info .color-box {
+  width: 40px;
+  height: 40px;
+  margin-top: 10px;
+}
+#app .product .product-info .textDecoration {
+  text-decoration: line-through;
+}
+
+/*# sourceMappingURL=main.css.map */
