@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vue Components slots</title>
+  <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+</head>
+<style>
+  .select{
+    text-decoration-line: line-through;
+    color: blue;
+  }
+</style>
+<body>
+
+  <div id="app">
+    <div class="container bg-light mt-5">
+     <todo-item>
+      buy Bananas
+      <template #description>
+        <!-- v-slot == # -->
+       <p> and generate HTML, CSS and SCSS styles.</p>  
+      </template>
+      <template #button-text>
+        Make it rain
+      </template>
+
+       </todo-item>
+
+      <todo-item>
+      eat Bananas
+      <template #description>
+        <!-- v-slot == # -->
+       <p> and generate HTML, CSS and SCSS styles.</p>  
+      </template>
+       </todo-item>  
+    </div>
+   
+  </div>
+   
+
+
+  <script type="text/x-template" id="todo-item-template">
+    <div>
+        <input type="checkbox" v-model="complated">
+        <span :class="{select:complated}">
+         <slot></slot>
+        </span>
+        <slot name="description"></slot>
+        <button>
+         <slot name="button-text">Highligth</slot>
+        </button>
+
+    </div>
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+  <script type="text/javascript">
+    Vue.component('todo-item',{
+        template:`#todo-item-template`,
+        data(){
+          return{
+            complated:false
+          }
+        }
+    });
+
+
+    var app=new Vue({
+       el:"#app"
+    });
+  </script>
+</body>
+</html>

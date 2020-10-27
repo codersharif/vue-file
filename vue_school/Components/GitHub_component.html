@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GitHub User Profile Component</title>
+  <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+</head>
+<body>
+<div id="app">
+  <div class="container mt-5">
+    <div class="row">
+      <github-user-card 
+      v-for="username in usernames"
+      :username="username">
+      @get-login-name="getLoginName"  
+      </github-user-card>
+    </div>
+  </div>
+</div>
+
+  <script type="text/x-template" id="github-user-card-template">
+    <div class="col-md-4">
+      <div>
+        <input type="text"
+        v-model="login_name"
+        class="form-control"
+        placeholder="Enter GitHub Username"
+        @keyup.enter="setLogin"
+        >
+      </div>
+      <div class="card">
+        <img :src="user.avatar_url">
+    
+        <div class="card-body">
+          <h5 class="card-title">
+            <a :href="user.html_url">{{user.name}}</a>
+          </h5>
+           <small class="text-muted">Joined in {{user.created_at}}</small>
+           <h5 class="card-title">
+           {{user.login}}
+          </h5>
+          <small class="text-muted">{{user.location}}</small>
+          <p class="card-text">
+          {{user.bio}}
+        </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+     </div>
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <script type="text/javascript">
+    Vue.component('github-user-card',{
+        template:`#github-user-card-template`,
+        props:{
+          username:{
+            type:String,
+            required:true
+          }
+        },
+        data(){
+          return{
+            login_name:null,
+            user:{
+
+            }
+          }
+        },
+        methods:{
+          setLogin(){
+            this.$emit('get-login-name',this.login_name);
+          }
+        },
+        created(){
+          axios.get('https://api.github.com/users/'+this.username)
+          .then(response =>{
+            this.user =response.data
+          })
+        }
+    });
+
+
+    var app=new Vue({
+       el:"#app",
+       data:{
+        usernames:['codersharif']
+       },
+       methods:{
+        getLoginName(login_name){
+          this.usernames.push(login_name);
+        }
+       }
+    });
+  </script>
+</body>
+</html>

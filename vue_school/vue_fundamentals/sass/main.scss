@@ -1,0 +1,39 @@
+@import'buttons';
+input{
+	padding: 10px;
+	width: 30%;
+	border: 1px solid #666;
+}
+
+.header{
+	border:1px solid #333;
+	padding:10px;
+}
+.backgroundColor{
+	color: #fff;
+	background:#615D5E;
+	padding: 10px;
+	border: none;
+	margin: 5px;
+}
+#dynamic{
+	border:1px solid #333;
+	padding:10px;
+
+	.dynamic-header{
+		width: 100%;
+	}
+}
+
+.strikeOut{
+	text-decoration: line-through;
+	font-weight: bold;
+}
+.priority{
+	color: #F04E1E;
+	font-weight: bold;
+}
+#computed{
+	border:1px solid #333;
+	padding:10px;	
+}

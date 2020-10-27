@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create a Notification Message Component</title>
+  <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+</head>
+<body>
+  <div id="app">
+    <div class="container bg-light mt-5">
+     <notification type="alert-danger" header="oh no!" >
+       <p>Your flight has been <b>Canceled</b>!</p>
+     </notification>
+      <notification type="alert-success" header="oh yeah!" >
+       <p>Your flight is time on</p>
+     </notification>
+
+     <notification>
+       <p>Good morning</p>
+     </notification>
+    </div>
+  </div>
+   
+
+
+  <script type="text/x-template" id="notification-template">
+    <div>
+       <div v-if="!hidden" class="alert" :class="type" role="alert">
+        <strong>{{header}}</strong> 
+        <button @click="hide" type="button" class="close">
+          <span>&times;</span>
+        </button>
+        <slot><slot>
+      </div> 
+    </div>
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+  <script type="text/javascript">
+    Vue.component('notification',{
+        template:`#notification-template`,
+        props:{
+          type:{
+            type:String,
+            default:'alert-info'
+          },
+          header:{
+            type:String,
+            default:'Information'
+          }
+
+        },
+        data(){
+          return{
+            hidden:false
+          }
+        },
+        methods:{
+          hide(){
+            this.hidden=true
+          }
+        }
+      
+
+    });
+
+
+    var app=new Vue({
+       el:"#app"
+    });
+  </script>
+</body>
+</html>

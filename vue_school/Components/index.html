@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vue Components Fundamentals</title>
+  <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+</head>
+<body>
+
+  <div id="app">
+    <counter></counter>
+    <counter></counter>
+    <counter></counter>
+  </div>
+   
+
+
+  <script type="text/x-template" id="click-counter">
+    <div>
+        <p>The Counter is:</p>
+        <button @click="count++">{{count}}</button>
+    </div>
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="main.js" type="text/javascript"></script>
+
+</body>
+</html>

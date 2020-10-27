@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vue Fundamentals</title>
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+   <div id="app">
+
+    <div>
+      <h1>{{header}}</h1>
+      <input  type="text" v-model="header">
+   	  <!-- vue syntext & expression part -->
+   	 <h1>{{header.toLocaleUpperCase()}}</h1>
+   	 <h1>{{header ? header:'Welcome'}}</h1>
+    </div>
+
+    <div class="header">
+    	<h1>{{header.toLocaleUpperCase()}}</h1>
+    	<button
+    	 v-if="state === 'default'"
+    	 @click="changeState('edit')"
+    	 class="btn">Add item</button>
+    	<button 
+    	v-else class="cencel"
+    	@click="changeState('default')"
+    	>Cencel</button>
+    </div>
+
+    <!-- list-rendering part -->
+   	 <div id="list-rendering">
+   	 	<ul>
+   	 		<li v-for="item in items">{{item}}</li>
+   	 	</ul>
+   	 	<p v-if="items.length === 0">Nice Job! vue condition check</p>
+   	 </div>
+
+
+
+   	 <!-- User Inputs -->
+   	 <div v-if="state === 'edit'">
+   	 <div id="User_inputs">
+   	 	<input v-model="newItem"
+   	 	 type="text"
+   	 	 @keyup.enter="saveItem"
+   	 	 placeholder="Add a new Item"
+   	 	  >
+   	 	  <!-- @keyup.enter="items.push(newItem)" with events -->
+   	 </div> 
+
+   	 <!-- User Events 
+      //@click ---evends
+      //:disabled & :class means Attributes
+   	 -->
+   	 <div id="Events">
+   	   <button 
+   	   @click="items.push(newItem)"
+   	   :disabled="newItem.length === 0"
+   	   :class="{backgroundColor:newItem.length === 0}"
+   	   class="btn">Add items</button>
+   	 </div>
+
+   	 <!-- Vue Methods -->
+   	 <div id="methods">
+       <button @click="saveItem" class="btn"> Add Items with methods</button>
+   	 </div> 
+   	 </div>
+
+   	 <!-- Dynamic Classes -->
+   	 <div id="dynamic">
+   	   <h3>Dynamic Classes</h3>
+   	   <div class="dynamic-header">
+   	   	 <p v-if="charCout !==0">{{charCout}}/200</p>
+   	   	 <input
+   	   	  v-model="newItem2"
+   	   	  @keyup.enter="saveItem2"
+   	   	  type="text">
+   	   	 <button @click="saveItem2" class="btn">Add item</button>
+   	   </div>
+   	  
+       <ul>
+       	<!-- :class="[item2.purchased ? 'strikeOut':'priority']" -->
+       	<li 
+       	v-for="item2 in items2"
+       	:class="{strikeOut:item2.purchased}"
+       	@click="togglePurchased(item2)"
+       	>{{item2.label}}</li>
+       </ul>
+   	 </div>
+
+   	 <!-- Computed  -->
+   	 <div id="computed">
+   	 	<p>reverse</p>
+   	 	<ul>
+   	 		<li v-for="item3 in reversedItem">{{item3.label}}</li>
+   	 	</ul>
+   	 </div>
+
+   </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="main.js" type="text/javascript"></script>
+</body>
+</html>
